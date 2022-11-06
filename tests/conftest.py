@@ -2,6 +2,7 @@ import pytest
 import sys
 
 
+# fixture calling build in fixture monkeypatch, sys.stdout change will undone
 @pytest.fixture
 def capture_stdout(monkeypatch):
     buffer = {"stdout": "", "write_calls": 0}
@@ -14,6 +15,7 @@ def capture_stdout(monkeypatch):
     return buffer
 
 
+# multiple code to test database connection, no need to copy all
 @pytest.fixture(scope="session")
 def db_conn():
     db = ...

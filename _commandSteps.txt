@@ -1,0 +1,57 @@
+check multiple (like dislike key has been slap/pressed)
+
+Three different type of test: mypy; flake8; pytest
+
+1. pip install -e .
+
+In the virtual env, it put a link into current source directory
+
+change the src py file, do not need to install the package again
+
+make a package, install the package into current environment
+
+2. requirement_dev.txt and setup.cfg
+slapping = py.typed
+pip install -r .\requirements_dev.txt
+
+
+mypy src : 
+return 
+Success: no issues found in 2 source files
+
+
+flake8 src
+
+3. Pytest feature
+configured in pyproject.toml file where to do pytest
+
+[tool.pytest.ini_options]
+addopts = "--cov=slapping"
+testpaths = [
+    "tests",
+]
+
+!!!cov will give you summary at the end of test report, 100% touch every line of the code
+
+(1) look for any funtion with test_
+(2) if use one funtion assert and one fail, the reset will not run,
+So use decorator parametrize into multi-slap function
+
+pytest fixture passed to your test, run fixture code for every single test
+scope="session" it will cache the value and pass the same database connection to all tests, not query in each test
+fixture useful for setup before test and tear down after a test
+
+4. check code working in fresh envir or different python version
+
+tox.ini
+only run tox before you push it, 
+
+5. Pass code to run on other's PC github
+configure GH test on commit action
+readme badge
+
+matrix OS and python version combined
+
+tox-gh-actions
+add [gh-actions] to tox.ini file to match tox to github
+

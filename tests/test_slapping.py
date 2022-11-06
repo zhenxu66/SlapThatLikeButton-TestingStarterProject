@@ -1,5 +1,6 @@
 import pytest
 from slapping.slap_that_like_button import LikeState, slap_many
+# make package installable
 
 
 def test_empty_slap():
@@ -24,11 +25,13 @@ def test_multi_slaps(test_input, expected):
     assert slap_many(LikeState.empty, test_input) is expected
 
 
+#skipif to check OS windows or mac
 @pytest.mark.skip(reason="regexes not supported yet")
 def test_regex_slaps():
     assert slap_many(LikeState.empty, '[ld]*ddl') is LikeState.liked
 
 
+#Expected fail not counted as a fail, know it will fail but not fail the build
 @pytest.mark.xfail
 def test_divide_by_zero():
     assert 1 / 0 == 1
@@ -39,12 +42,14 @@ def test_invalid_slap():
         slap_many(LikeState.empty, 'x')
 
 
+# use db_conn as argument name which is a fixture, put yield or return back
 @pytest.mark.xfail
 def test_db_slap(db_conn):
     db_conn.read_slaps()
     assert ...
 
 
+# specialized fixture capture_stdout
 def test_print(capture_stdout):
     print("hello")
     assert capture_stdout["stdout"] == "hello\n"
