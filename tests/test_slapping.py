@@ -49,7 +49,7 @@ def test_db_slap(db_conn):
     assert ...
 
 
-# specialized 
+# specialized fixture
 def test_print(capture_stdout):
     print("hello")
     assert capture_stdout["stdout"] == "hello\n"
