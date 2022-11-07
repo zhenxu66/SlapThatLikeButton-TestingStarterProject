@@ -32,7 +32,7 @@ def test_regex_slaps():
 
 
 #Expected fail not counted as a fail, know it will fail but not fail the build
-# @pytest.mark.xfail
+@pytest.mark.xfail
 def test_divide_by_zero():
     assert 1 / 0 == 1
 
